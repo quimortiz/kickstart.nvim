@@ -102,7 +102,7 @@ require('lazy').setup({
       -- Snippet Engine & its associated nvim-cmp source
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-
+      "hrsh7th/cmp-path",
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
 
@@ -112,7 +112,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -156,9 +156,9 @@ require('lazy').setup({
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
+    -- config = function()
+    --   vim.cmd.colorscheme 'onedark'
+    -- end,
   },
 
   {
@@ -168,7 +168,9 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = "catppuccin",
+        -- theme = 'solarized',
+        -- theme = 'onedark',
         component_separators = '|',
         section_separators = '',
       },
@@ -217,11 +219,39 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'catppuccin-latte'
+    end,
+  },
+
+  { 'shaunsingh/solarized.nvim', priority = 1000,
+  },
+
+
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
   -- require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
+  require 'custom.plugins.copilot',
+  require 'custom.plugins.filetree',
+  require 'custom.plugins.toggleterm',
+  require 'custom.plugins.gv',
+  require 'custom.plugins.vimtex',
+  require 'custom.plugins.nvim-surround',
+  require 'custom.plugins.NotebookNavigator',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
@@ -345,7 +375,7 @@ local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
     require('telescope.builtin').live_grep({
-      search_dirs = {git_root},
+      search_dirs = { git_root },
     })
   end
 end
@@ -511,9 +541,9 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  -- clangd = {},
+  clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
@@ -552,6 +582,19 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
+
+
+-- local cmp_nvim_lsp = require "cmp_nvim_lsp"
+--
+-- require("lspconfig").clangd.setup {
+--   on_attach = on_attach,
+--   capabilities = cmp_nvim_lsp.default_capabilities(),
+--   cmd = {
+--     "clangd",
+--     "--offset-encoding=utf-16",
+--   },
+-- }
+
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
@@ -601,8 +644,15 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'path' },
   },
 }
 
+-- quim added
+vim.cmd([[tnoremap <Esc> <C-\><C-n>]])
+
+vim.o.laststatus = 3
+vim.o.winbar = '%f'
+vim.o.hlsearch = true
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
