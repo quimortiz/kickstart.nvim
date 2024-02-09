@@ -276,6 +276,9 @@ require('lazy').setup({
     opts = {},
   },
 
+  {
+    'skywind3000/asyncrun.vim'
+  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -596,6 +599,7 @@ local servers = {
   clangd = {},
   -- gopls = {},
   pyright = {},
+  pylsp = {},
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
