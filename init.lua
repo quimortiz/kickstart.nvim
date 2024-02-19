@@ -275,7 +275,6 @@ require('lazy').setup({
 
 
 
-
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -283,14 +282,15 @@ require('lazy').setup({
   -- require 'kickstart.plugins.debug',
   require 'custom.plugins.copilot',
   require 'custom.plugins.filetree',
-  require 'custom.plugins.toggleterm',
+  -- require 'custom.plugins.toggleterm',
   require 'custom.plugins.gv',
   require 'custom.plugins.vimtex',
   require 'custom.plugins.nvim-surround',
   require 'custom.plugins.NotebookNavigator',
   require 'custom.plugins.catppuccin',
   require 'custom.plugins.tokyonight',
-  require 'custom.plugins.asyncrun'
+  require 'custom.plugins.asyncrun',
+  require 'custom.plugins.bg'
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
@@ -699,6 +699,10 @@ cmp.setup {
 
 -- quim added
 vim.cmd([[tnoremap <Esc> <C-\><C-n>]])
+
+vim.cmd([[map <F1> :below 10sp term://bash<cr>i]])
+vim.cmd([[map <F2> :below 10sp term://%:p:h//bash<cr>i]])
+
 vim.o.laststatus = 3
 vim.o.winbar = '%f'
 vim.o.hlsearch = true
