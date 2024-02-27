@@ -200,7 +200,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- quim added
 -- vim.cmd([[tnoremap <Esc> <C-\><C-n>]])
-
 vim.cmd [[map <F1> :below 10sp term://bash<cr>i]]
 vim.cmd [[map <F2> :below 10sp term://%:p:h//bash<cr>i]]
 
@@ -820,7 +819,7 @@ require('lazy').setup {
   require 'custom.plugins.nvim-surround',
   require 'custom.plugins.NotebookNavigator',
   require 'custom.plugins.catppuccin',
-  require 'custom.plugins.tokyonight',
+  -- require 'custom.plugins.tokyonight',
   require 'custom.plugins.asyncrun',
   require 'custom.plugins.bg',
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
