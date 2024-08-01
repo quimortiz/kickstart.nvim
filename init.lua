@@ -204,11 +204,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- quim added
--- vim.cmd([[tnoremap <Esc> <C-\><C-n>]])
--- vim.cmd [[map <F1> :below 10sp term://bash<cr>i]]
--- vim.cmd [[map <F2> :below 10sp term://%:p:h//bash<cr>i]]
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -966,7 +961,3 @@ vim.cmd [[command! Cb let @+=expand('%:p')]]
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
---
---
---
---
