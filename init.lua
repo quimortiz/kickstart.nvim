@@ -203,8 +203,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- quim added
 -- vim.cmd([[tnoremap <Esc> <C-\><C-n>]])
-vim.cmd [[map <F1> :below 10sp term://bash<cr>i]]
-vim.cmd [[map <F2> :below 10sp term://%:p:h//bash<cr>i]]
+-- vim.cmd [[map <F1> :below 10sp term://bash<cr>i]]
+-- vim.cmd [[map <F2> :below 10sp term://%:p:h//bash<cr>i]]
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -882,16 +882,6 @@ require('lazy').setup({
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
-  {
-    'amitds1997/remote-nvim.nvim',
-    version = '*', -- Pin to GitHub releases
-    dependencies = {
-      'nvim-lua/plenary.nvim', -- For standard functions
-      'MunifTanjim/nui.nvim', -- To build the plugin UI
-      'nvim-telescope/telescope.nvim', -- For picking b/w different remote methods
-    },
-    config = true,
-  },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -912,6 +902,8 @@ require('lazy').setup({
   require 'custom.plugins.nvim-surround',
   require 'custom.plugins.NotebookNavigator',
   require 'custom.plugins.asyncrun',
+  require 'custom.plugins.remote-nvim',
+
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
   -- require 'custom.plugins.toggleterm',
@@ -947,7 +939,16 @@ require('lazy').setup({
   },
 })
 
-vim.cmd [[ nnoremap <expr> <leader>sF ':Telescope find_files<cr>' . expand('<cword>') ]]
+vim.api.nvim_set_keymap('n', '<F1>', ':below 10sp term://bash<CR>i', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<F2>', ':below 10sp term://%:p:h//bash<CR>i', { noremap = true, silent = true })
+
+-- vim.cmd [[ nnoremap <expr> <leader>sF ':Telescope find_files<cr>' . expand('<cword>') ]]
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>sF',
+  [[:lua require('telescope.builtin').find_files({ default_text = vim.fn.expand('<cword>') })<CR>]],
+  { noremap = true, silent = true }
+)
 
 vim.o.laststatus = 3
 vim.o.winbar = '%f'
