@@ -975,8 +975,10 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.neo-tree',
   require 'custom.plugins.copilot',
   require 'custom.plugins.filetree',
   require 'custom.plugins.gv',
@@ -986,8 +988,6 @@ require('lazy').setup({
   require 'custom.plugins.asyncrun',
   require 'custom.plugins.remote-nvim',
 
-  require 'kickstart.plugins.autopairs',
-  require 'kickstart.plugins.neo-tree',
   -- require 'custom.plugins.toggleterm',
   -- require 'custom.plugins.bg',
   -- require 'custom.plugins.catppuccin',
